@@ -5,7 +5,7 @@ public class Galaxy extends Phone implements Ringable {
 	    }
 	    @Override
 	    public String ring() {
-	        return ("Galaxy s9 says Ring Ring Ring!");	
+	        return this.getRingTone();	
 	    }
 	    @Override
 	    public String unlock() {
@@ -14,6 +14,9 @@ public class Galaxy extends Phone implements Ringable {
 	    }
 	    @Override
 	    public void displayInfo() {
-	        System.out.println("Galaxy s9 from Verizon");            
+	    	System.out.println("Version Number: " + this.getVersionNumber());
+	        System.out.println("Battery percentage: " + this.getBatteryPercentage());
+	        System.out.println("Carrier: " + this.getCarrier());
+	        System.out.println("RingTone: " + this.getRingTone());            
 	    }
 }

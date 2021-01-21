@@ -5,7 +5,7 @@ public class IPhone extends Phone implements Ringable {
     }
     @Override
     public String ring() {
-        return ("IPhone x says Zing");
+        return this.getRingTone();
     }
     @Override
     public String unlock() {
@@ -13,6 +13,9 @@ public class IPhone extends Phone implements Ringable {
     }
     @Override
     public void displayInfo() {
-        System.out.println("IPhone from AT&T");            
+        System.out.println("Version Number: " + this.getVersionNumber());
+        System.out.println("Battery percentage: " + this.getBatteryPercentage());
+        System.out.println("Carrier: " + this.getCarrier());
+        System.out.println("RingTone: " + this.getRingTone());
     }
 }
