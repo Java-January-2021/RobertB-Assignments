@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class counter {
-	@RequestMapping("/")
-	public String main(HttpSession session) {
+	@RequestMapping("/counter")
+	public String index(HttpSession session) {
 		if (session.getAttribute("count") == null) {
 			session.setAttribute("count", 0);
 		}
-		return "index.jsp";
+		return "counter.jsp";
+		
 	}
-	@RequestMapping("/counter")
-	public String index(HttpSession session, Model viewModel) {
+	@RequestMapping("/")
+	public String main(HttpSession session, Model viewModel) {
 		Integer currentCount = (Integer) session.getAttribute("count");
 		currentCount++;
 		session.setAttribute("count", currentCount);
 		viewModel.addAttribute("currentCount");
-		return "counter.jsp";
-		
+		return "index.jsp";
 	}
 }
