@@ -15,11 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.robertbuckley.Authentication.models.User;
 import com.robertbuckley.Authentication.services.UserService;
+import com.robertbuckley.Authentication.validators.UserValidator;
 
 @Controller
 public class Users {
 	@Autowired
 	private UserService uService;
+	@Autowired
+	private UserValidator validator;
 	
 	@GetMapping("/registration")
 	public String registerForm(@ModelAttribute("user") User user) {
@@ -34,11 +37,12 @@ public class Users {
 	@RequestMapping(value="/registration", method=RequestMethod.POST)
     public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
         // if result has errors, return the registration page (don't worry about validations just now)
-		if(result.hasErrors()) {
-			return "/registraion";
-		}
+//		validator.validate(user, result);
+//		if(result.hasErrors()) {
+//			return "registrationPage.jsp";
+//		}
         // else, save the user in the database, save the user id in session, and redirect them to the /home route
-		User newUser = this.uService.registerUser(user);
+		User newUser = uService.registerUser(user);
 		session.setAttribute("user_id", newUser.getId());
 		return "redirect:/home";
     }
@@ -46,15 +50,16 @@ public class Users {
     @RequestMapping(value="/login", method=RequestMethod.POST)
     public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
         // if the user is authenticated, save their user id in session
-    	boolean isAuthenticated = uService.authenticateUser(email, password);
-    	if(isAuthenticated) {
+    	boolean authUser = uService.authenticateUser(email, password);
+    	if(authUser) {
     		User user = uService.findByEmail(email);
     		session.setAttribute("user_id", user.getId());
     		return "redirect:/home";
-    	}
+    	}else {
         // else, add error messages and return the login page
     	model.addAttribute("error", "Invalid login information. Try Again!");
-    	return "redirect:/login";
+    	return "loginPage.jsp";
+    	}
     }
     
     @RequestMapping("/home")

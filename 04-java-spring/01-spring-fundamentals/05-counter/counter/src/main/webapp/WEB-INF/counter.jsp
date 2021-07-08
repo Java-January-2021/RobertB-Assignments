@@ -9,6 +9,6 @@
 </head>
 <body>
 	<p>You have visited http://your_server <c:out value="${count}"/> times</p>
-	<a href = "/">Test another visit?</a>
+	<a href = "/" >Test another visit?</a>
 </body>
 </html>

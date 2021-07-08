@@ -5,9 +5,11 @@ public class HumanTest {
 		// TODO Auto-generated method stub
 		Human jake = new Human();
 		Human rob = new Human();
+		Wizard lee = new Wizard("Lee");
 		
 		rob.attack(jake);
 		System.out.println(jake.getHealth());
+		
 	}
 
 }

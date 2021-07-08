@@ -42,7 +42,6 @@ public class mainController {
 		viewModel.addAttribute("user_id", setUser);
 		viewModel.addAttribute("user", currentUser);
 		viewModel.addAttribute("events", allEvents);
-		viewModel.addAttribute("states", State.States);
 		viewModel.addAttribute("userState", this.aServ.eventsByInState(currentUser.getState()));
 		viewModel.addAttribute("nonUserState", this.aServ.eventsNotInState(currentUser.getState()));
 		return "events.jsp";

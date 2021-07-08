@@ -1,9 +1,11 @@
 
 public class Human {
-	int strength = 3;
-	int stealth = 3;
-	int intelligence = 3;
-	int health = 100;
+	public String name;
+	private int strength = 3;
+	private int stealth = 3;
+	private int intelligence = 3;
+	private int health = 100;
+	int count = 0;
 	
 	public int getStrength() {
 		return this.strength;
@@ -29,10 +31,13 @@ public class Human {
 	public void setHealth(int health) {
 		this.health = health;
 	}
-	public void attack(Human jake) {
-		int otherHealth = jake.getHealth();
-		jake.setHealth(otherHealth -= this.strength);
-		System.out.println(jake.getHealth());
+	public void attack(Human target) {
+		int otherHealth = target.getHealth();
+		target.setHealth(otherHealth -= this.strength);
+		System.out.println(target.getHealth());
+	}
+	public int count() {
+		return count;
 	}
 
 }

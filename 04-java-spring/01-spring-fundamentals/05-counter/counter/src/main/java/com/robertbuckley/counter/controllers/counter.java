@@ -11,7 +11,6 @@ public class counter {
 		
 	@RequestMapping("/")
 	public String main(HttpSession session) {
-
 		if (session.getAttribute("count") == null) {
 			session.setAttribute("count", 0);
 		}
@@ -20,10 +19,10 @@ public class counter {
 	
 	@RequestMapping("/counter")
 	public String index(HttpSession session, Model viewModel) {
-		Integer currentCount = (Integer) session.getAttribute("count");
-		currentCount++;
-		session.setAttribute("count", currentCount);
-		viewModel.addAttribute("currentCount");
+			Integer currentCount = (Integer) session.getAttribute("count");
+//			currentCount++;
+			session.setAttribute("count", currentCount);
+			viewModel.addAttribute("currentCount");
 		return "counter.jsp";
 		}
 }
